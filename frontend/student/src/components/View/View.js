@@ -6,15 +6,16 @@ const View = () => {
 
     const[student,setStudent] = useState([])
 
-    useEffect(()=>{
-        loadStudent();
-
-    },[])
-    
     const loadStudent = async()=>{
         const result =  await axios.get("http://localhost:4000/student")
        setStudent(result.data.student)
     }
+    
+    useEffect(()=>{
+        loadStudent();
+
+    },[])
+
 
     const deleteStudent = async(id)=>{
         await axios.delete("http://localhost:4000/student/"+id)
