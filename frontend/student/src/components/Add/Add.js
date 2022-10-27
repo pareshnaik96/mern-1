@@ -22,19 +22,23 @@ const Add = () => {
     
     const handleSubmit = async(e)=>{
         e.preventDefault()
+        if(!fname || !lname || !email || !password){
+            alert("please enter required fields")
+        }else{
         await axios.post("http://localhost:4000/register",student)
-         .then((result)=>{
-            alert("Register successfull")
-         })
-         .catch((err)=>{
-            alert("error")
-         })
+            .then((result)=>{
+                console.log(result)
+                alert("Register successfull")
+            }).catch((err)=>{
+                alert("Error")
+            })
+        }
     }
    return (
-        <div className='container forms'>
-        <form onSubmit={e=>handleSubmit(e)}>
+        <div className='container form'>
+        <form onSubmit={handleSubmit}>
         <div className='row'>
-            <div className='col-md-12 text-center'><h2>Add student</h2></div>
+            <div className='col-md-12 text-center'><h3>Add Student</h3></div>
         </div>
         <div className='row'>
             <div className='col-md-2'></div>
@@ -63,8 +67,8 @@ const Add = () => {
 
         <div className='row'>
         <div className='col-md-2'></div>
-            <div className='col-md-8 t'>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <div className='col-md-8'>
+            <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div className='col-md-2'></div>
         </div>

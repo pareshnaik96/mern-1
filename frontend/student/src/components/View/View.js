@@ -12,13 +12,13 @@ const View = () => {
     },[])
     
     const loadStudent = async()=>{
-        const result =  await axios.get("http://localhost:4000/student",)
+        const result =  await axios.get("http://localhost:4000/student")
        setStudent(result.data.student)
     }
 
     const deleteStudent = async(id)=>{
-        const result =  await axios.delete("http://localhost:4000/student/"+id)
-        .then((result)=>{
+        await axios.delete("http://localhost:4000/student/"+id)
+        .then(()=>{
             alert("deleted successfull")
             loadStudent()
          })
@@ -29,13 +29,13 @@ const View = () => {
 
 
   return (
-        <div className='container forms'>
+        <div className='container-forms'>
         <div className='row'>
             <div className='col-md-12 text-center'><h2>Student List</h2></div>
         </div>
         
         <table className='table'>
-            <thead>
+            <thead className='head'>
                 <th>Sr. No.</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -50,8 +50,12 @@ const View = () => {
                     <td>{student.fname}</td>
                     <td>{student.lname}</td>
                     <td>{student.email}</td>
-                    <td><Link to={`edit/${student._id}`}>EDIT</Link></td>
-                    <td><Link to="" onClick={()=>deleteStudent(student._id)}>DELETE</Link></td>
+                    <td><Link to={`edit/${student._id}`}>
+                        <button className='btn btn-edit'>Edit</button>
+                        </Link></td>
+                    <td>
+                       <button className='btn btn-delete'onClick={()=>deleteStudent(student._id)}>Delete</button>
+                    </td>
                 </tr>
                ))}
             </tbody>

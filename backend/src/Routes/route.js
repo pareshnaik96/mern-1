@@ -12,4 +12,5 @@ router.delete('/student/:id',studentController.deleteStudent)
 
 
 
+
 module.exports = router
