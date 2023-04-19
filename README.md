@@ -1,4 +1,4 @@
-# mern-1
+# Student Registration
 
 fullstack application using React.js, Node.js and MongoDB database.
 * Register student details.
